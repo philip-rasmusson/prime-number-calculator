@@ -1,14 +1,8 @@
 'use strict'
 
 let array = []
+document.getElementById('display-array').innerHTML = array
 
-// const testing = (n) => {
-
-
-//   return Number(n.toString().split('').reverse()[0])
-// }
-
-// console.log(testing(36344))
 
 function test() {
 
@@ -57,17 +51,23 @@ const checkIfPrime = (n) => {
   else return true
 }
 
-const addToArray = (newNumber) => {
-  array.push(newNumber)
+const addToArray = (primeNumber) => {
+  array.push(primeNumber)
+}
+
+const showArray = () => {
   document.getElementById('display-array').innerHTML = array
+  document.getElementById('display-array').style.display === 'none'
+    ? document.getElementById('display-array').style.display = 'inline'
+    : document.getElementById('display-array').style.display = 'none'
 }
 
 
 // module.exports = checkIfPrime
 
 
-  // else if ((n % 2 === 0 || n % 5 === 0))
-  //   return false
+// else if ((n % 2 === 0 || n % 5 === 0))
+//   return false
 
 
 

@@ -8,3 +8,11 @@
   justify-self: center;
   align-self: center;
 }
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
