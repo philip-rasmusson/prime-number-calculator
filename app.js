@@ -4,27 +4,33 @@ let array = []
 document.getElementById('display-array').innerHTML = array
 
 
-function test() {
+
+function primeQuery() {
 
   let inputIsPrime = false
 
+  //Clears the text before a new search
   document.getElementById('display-result').innerHTML = ''
   document.getElementById('display-message').innerHTML = ''
 
   const input = document.getElementById("userInput").value
-  if (!isNaN(input) && input > 0 && input % 1 === 0)
+  if (!isNaN(input) && input > 0 && input % 1 === 0) {
     inputIsPrime = checkIfPrime(parseInt(input))
+    if (inputIsPrime) {
+      document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number! Try another one!`
+      document.getElementById('wario-default').style.display = 'none'
+      document.getElementById('wario-success').style.display = 'block'
+      addToArray(input)
+    } else {
+      document.getElementById('display-result').innerHTML = `Sorry! ${input} is NOT a prime number...`
+      document.getElementById('wario-default').style.display = 'none'
+      document.getElementById('wario-fail').style.display = 'block'
+    }
+  }
   else {
     document.getElementById('display-message').innerHTML = 'Wrong input'
   }
   document.getElementById('userInput').value = ''
-
-  if (inputIsPrime) {
-    document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number!`
-    addToArray(input)
-  } else {
-    document.getElementById('display-result').innerHTML = `Sorry! ${input} is NOT a prime number...`
-  }
 
 }
 
@@ -62,8 +68,14 @@ const showArray = () => {
     : document.getElementById('display-array').style.display = 'none'
 }
 
+const resetWario = () => {
+  document.getElementById('wario-default').style.display = 'block'
+  document.getElementById('wario-success').style.display = 'none'
+  document.getElementById('wario-fail').style.display = 'none'
+  document.getElementById('display-result').innerHTML = ''
+}
 
-// module.exports = checkIfPrime
+module.exports = checkIfPrime
 
 
 // else if ((n % 2 === 0 || n % 5 === 0))

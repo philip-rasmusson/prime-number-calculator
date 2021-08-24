@@ -1,18 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 .main-wrapper {
   display: grid;
   width: 100vw;
   height: 100vh;
+  min-height: 600px;
+  grid-template-rows: repeat(12, 1fr);
+  grid-template-columns: repeat(12, 1fr);
 }
 
-.main-wrapper-inner {
+.show-array-button, .wario-fail, .wario-success {
+  display: none;
+}
+
+.display-result {
+  grid-row: 5/9;
+  grid-column: 4/9;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  font-weight: 300;
+}
+
+.main-message {
+  font-size: 2vw;
+  grid-row: 2/3;
+  grid-column: 2/-2;
+  justify-self: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.user-input {
+  grid-column: 4/9;
+  grid-row: 3/4;
   justify-self: center;
   align-self: center;
 }
 
-.hidden {
-  display: none;
+#userInput {
+  padding: .1rem .8rem;
+  font-size: 2vw;
+  border-radius: 1rem;
+  /* border: rgb(255, 229, 83) solid 1px;
+  background-color: rgb(155, 83, 137); */
 }
 
-.show {
-  display: block;
+.submit-button {
+  height: 3vw;
+  background: none;
+  padding: .4vw;
+  border-radius: 1rem;
+}
+
+.show-array-button {}
+
+.display-array {}
+
+.display-message {}
+
+.wario-wrapper {
+  height: 100%;
+  width: 100%;
+  min-height: 20rem;
+  display: grid;
+  grid-row: 1/-2;
+  grid-column: 2/-2;
+  align-self: center;
+  justify-self: center;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.wario-success, .wario-default, .wario-fail {
+  width: 26vw;
+  max-width: 30rem;
+  grid-column: 5/-1;
+  grid-row: 4/-1;
+  align-self: center;
+  justify-self: center;
+  z-index: 500;
+}
+
+/* .speech {
+  width: 40vw;
+  max-width: 40rem;
+  grid-row: 1/4;
+  grid-column: 2/6;
+  align-self: center;
+  justify-self: center;
+} */
+
+@media screen and (min-width: 1200px) {
+  .main-message {
+    font-size: 1.5rem;
+  }
+  .speech {
+    width: 40rem;
+  }
+  .wario-sucess, .wario-default {
+    width: 20rem;
+  }
+  #userInput {
+    font-size: 1.5rem;
+  }
+  .submit-button {
+    padding: .4rem;
+    height: 2rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .main-wrapper {
+    display: none;
+  }
 }
