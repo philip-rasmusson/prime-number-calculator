@@ -65,6 +65,7 @@
   grid-column: 2/4;
   width: 100%;
   align-self: flex-start;
+  justify-self: right;
   cursor: pointer;
 }
 
@@ -75,7 +76,7 @@
   border: black solid 1px;
   border-radius: 1rem;
   max-height: 50vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: fit-content;
   justify-self: center;
   padding: .5rem;
@@ -118,21 +119,47 @@
   z-index: 500;
 }
 
-/* .speech {
-  width: 40vw;
-  max-width: 40rem;
-  grid-row: 1/4;
-  grid-column: 2/6;
+.speech {
+  width: 10vw;
+  max-width: 15rem;
+  grid-row: 7/-3;
+  grid-column: 4/6;
+  align-self: center;
+  justify-self: left;
+  display: grid;
+  position: relative;
+}
+
+.speech-img, .speech-text {
   align-self: center;
   justify-self: center;
-} */
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+}
+
+.speech-img {
+  width: 100%;
+}
+
+.speech-text {
+  width: 80%;
+  font-size: .8vw;
+  position: relative;
+  left: .7vw;
+  top: -.3vw;
+  text-align: center;
+}
 
 @media screen and (min-width: 1200px) {
   .main-message {
     font-size: 1.5rem;
   }
-  .speech {
+  /* .speech {
     width: 40rem;
+  } */
+  .speech-text {
+    font-size: .6rem;
+    padding-right: 1.2rem;
   }
   .wario-sucess, .wario-default {
     width: 20rem;

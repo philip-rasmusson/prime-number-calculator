@@ -94,6 +94,7 @@ const resetWario = () => {
   document.getElementById('wario-default').style.display = 'block'
   document.getElementById('wario-success').style.display = 'none'
   document.getElementById('wario-fail').style.display = 'none'
+  document.getElementById('display-array').style.display = 'none'
   document.getElementById('display-result').innerHTML = 'HAH! I AM THE PRIME MINISTER!'
 }
 
