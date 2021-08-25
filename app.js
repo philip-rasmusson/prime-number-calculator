@@ -1,7 +1,7 @@
 'use strict'
 
 let array = []
-document.getElementById('display-array').innerHTML = array
+// document.getElementById('display-array').innerHTML = array
 
 
 
@@ -28,7 +28,7 @@ function primeQuery() {
     }
   }
   else {
-    document.getElementById('display-message').innerHTML = 'Wrong input'
+    document.getElementById('display-result').innerHTML = 'GAH! Wrong input! ONLY USE DIGITS! No more funny stuff, try again...'
   }
   document.getElementById('userInput').value = ''
 
@@ -46,6 +46,9 @@ const checkIfPrime = (n) => {
   //If input number is any of the known prime numbers between 0-100, returns true
   if (primesBetween0and100.includes(n))
     return true
+  //Number 1 is not a prime number
+  else if (n === 1)
+    return false
   //If input number ends with an even number, or 0, or 5, returns false
   else if (evenEnding.includes(lastDigit))
     return false
@@ -58,11 +61,20 @@ const checkIfPrime = (n) => {
 }
 
 const addToArray = (primeNumber) => {
-  array.push(primeNumber)
+  if (!array.includes(primeNumber))
+    array.push(primeNumber)
 }
 
+
+
 const showArray = () => {
-  document.getElementById('display-array').innerHTML = array
+
+  const sortedArray = array.sort((function (a, b) { return a - b })).map(x => {
+    console.log(x)
+    return `<p class="array-item">${x}</p>`
+  })
+
+  document.getElementById('display-array').innerHTML = sortedArray
   document.getElementById('display-array').style.display === 'none'
     ? document.getElementById('display-array').style.display = 'inline'
     : document.getElementById('display-array').style.display = 'none'
@@ -72,16 +84,9 @@ const resetWario = () => {
   document.getElementById('wario-default').style.display = 'block'
   document.getElementById('wario-success').style.display = 'none'
   document.getElementById('wario-fail').style.display = 'none'
-  document.getElementById('display-result').innerHTML = ''
+  document.getElementById('display-result').innerHTML = 'HAH! I AM THE PRIME MINISTER!'
 }
 
 module.exports = checkIfPrime
 
 
-// else if ((n % 2 === 0 || n % 5 === 0))
-//   return false
-
-
-
-  // else if (Number(n.toString().split('').reverse()[0]) === 0 || Number(n.toString().split('').reverse()[0]) === 5)
-  //   return false

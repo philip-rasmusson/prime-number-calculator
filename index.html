@@ -12,13 +12,15 @@
 <body>
 
   <div class="main-wrapper">
+    <div class="top-banner"></div>
     <h1 class="main-message">Please enter a whole number (1 or higher):</h1>
     <h1 id="display-result" class="display-result"></h1>
     <div class="user-input">
       <input id="userInput" type="text" value="" onclick={resetWario()} />
       <button type="submit" onclick={primeQuery()} class="submit-button">SUBMIT</button>
     </div>
-    <button type="showArray" onclick={showArray()} class="show-array-button">SHOW ARRAY</button>
+    <!-- <button type="showArray" onclick={showArray()} class="show-array-button">SHOW ARRAY</button> -->
+    <img src="./img/shell.png" alt="" onclick={showArray()} class="show-array-button">
     <div id="display-array" style="display: none;" class="display-array"></div>
     <div id="display-message" class="display-message"></div>
     <div class="wario-wrapper">
