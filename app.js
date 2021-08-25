@@ -15,20 +15,30 @@ function primeQuery() {
 
   const input = document.getElementById("userInput").value
   if (!isNaN(input) && input > 0 && input % 1 === 0) {
-    inputIsPrime = checkIfPrime(parseInt(input))
-    if (inputIsPrime) {
-      document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number! Try another one!`
-      document.getElementById('wario-default').style.display = 'none'
-      document.getElementById('wario-success').style.display = 'block'
-      addToArray(input)
+    if (input < Number.MAX_SAFE_INTEGER) {
+
+      inputIsPrime = checkIfPrime(parseInt(input))
+      if (inputIsPrime) {
+        document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number! Try another one!`
+        document.getElementById('wario-default').style.display = 'none'
+        document.getElementById('wario-success').style.display = 'block'
+        addToArray(input)
+      } else {
+        document.getElementById('display-result').innerHTML = `Sorry! ${input} is NOT a prime number...`
+        document.getElementById('wario-default').style.display = 'none'
+        document.getElementById('wario-fail').style.display = 'block'
+      }
     } else {
-      document.getElementById('display-result').innerHTML = `Sorry! ${input} is NOT a prime number...`
+      document.getElementById('display-result').innerHTML = 'HAHA! Thats WAYYYY too high! Be more serious...'
       document.getElementById('wario-default').style.display = 'none'
       document.getElementById('wario-fail').style.display = 'block'
+
     }
   }
   else {
     document.getElementById('display-result').innerHTML = 'GAH! Wrong input! ONLY USE DIGITS! No more funny stuff, try again...'
+    document.getElementById('wario-default').style.display = 'none'
+    document.getElementById('wario-fail').style.display = 'block'
   }
   document.getElementById('userInput').value = ''
 
