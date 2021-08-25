@@ -1,24 +1,18 @@
 'use strict'
 
 let array = []
-// document.getElementById('display-array').innerHTML = array
-
 
 
 function primeQuery() {
-
-  let inputIsPrime = false
-
   //Clears the text before a new search
-  document.getElementById('display-result').innerHTML = ''
-  document.getElementById('display-message').innerHTML = ''
+  // document.getElementById('display-result').innerHTML = ''
+  // document.getElementById('display-message').innerHTML = ''
 
   const input = document.getElementById("userInput").value
   if (!isNaN(input) && input > 0 && input % 1 === 0) {
     if (input < Number.MAX_SAFE_INTEGER) {
 
-      inputIsPrime = checkIfPrime(parseInt(input))
-      if (inputIsPrime) {
+      if (checkIfPrime(parseInt(input))) {
         document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number! Try another one!`
         document.getElementById('wario-default').style.display = 'none'
         document.getElementById('wario-success').style.display = 'block'
@@ -74,23 +68,36 @@ const addToArray = (primeNumber) => {
   if (!array.includes(primeNumber))
     array.push(primeNumber)
 }
+const resetArray = () => {
+  array = []
+  resetWario()
+}
 
 
 
 const showArray = () => {
-
-  const sortedArray = array.sort((function (a, b) { return a - b })).map(x => {
-    console.log(x)
-    return `<p class="array-item">${x}</p>`
+  const sortedArray = array.sort((function (a, b) { return b - a })).map(item => {
+    return `<p class="array-item">${item.toString()}</p>`
   })
 
-  document.getElementById('display-array').innerHTML = sortedArray
-  document.getElementById('display-array').style.display === 'none'
-    ? document.getElementById('display-array').style.display = 'inline'
-    : document.getElementById('display-array').style.display = 'none'
+  console.log(sortedArray.join(',').replace(/,/g, ' '))
+
+  document.getElementById('display-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
+  if (document.getElementById('display-array').style.display === 'none') {
+    document.getElementById('display-array').style.display = 'inline'
+    document.getElementById('speech').style.display = 'none'
+
+  }
+  else {
+    document.getElementById('display-array').style.display = 'none'
+    document.getElementById('speech').style.display = 'grid'
+
+  }
 }
 
 const resetWario = () => {
+  document.getElementById('speech').style.display = 'grid'
+
   document.getElementById('wario-default').style.display = 'block'
   document.getElementById('wario-success').style.display = 'none'
   document.getElementById('wario-fail').style.display = 'none'
