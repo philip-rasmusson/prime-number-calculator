@@ -1,6 +1,6 @@
 'use strict'
 //Creates an empty array at the beginning of the script
-let primeNumbers = [9, 9, 9, 9, 9, 9, 9, 9, 808098098]
+let primeNumbers = []
 const green = '#8AD385'
 const red = '#D8596F'
 const white = '#fff'
