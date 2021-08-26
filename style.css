@@ -237,6 +237,8 @@
     align-self: center;
     grid-row: 1/-1;
     font-size: 5vw;
+    position: absolute;
+    top: 45vh;
   }
   .show-array-button {
     grid-column: 3/6;

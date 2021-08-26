@@ -1,6 +1,6 @@
 'use strict'
 //Creates an empty array at the beginning of the script
-let PrimeNumbers = []
+let primeNumbers = []
 const green = '#8AD385'
 const red = '#D8596F'
 const white = '#fff'
@@ -61,12 +61,12 @@ const checkIfPrime = (n) => {
 }
 //Adds prime number to array
 const addToArray = (primeNumber) => {
-  if (!PrimeNumbers.includes(primeNumber))
-    PrimeNumbers.push(primeNumber)
+  if (!primeNumbers.includes(primeNumber))
+    primeNumbers.push(primeNumber)
 }
 //Removes all inputs to the array
 const resetArray = () => {
-  PrimeNumbers = []
+  primeNumbers = []
   resetWario()
 }
 //Sets which Wario img to show
@@ -81,7 +81,7 @@ const setMessage = (message, bgcolor) => {
 }
 //Toggles display of the array with all stored prime numbers
 const showArray = () => {
-  const sortedArray = PrimeNumbers.sort((function (a, b) { return b - a })).map(item => {
+  const sortedArray = primeNumbers.sort((function (a, b) { return b - a })).map(item => {
     return `<p class="array-item">${item.toString()}</p>`
   })
   document.getElementById('prime-numbers-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
