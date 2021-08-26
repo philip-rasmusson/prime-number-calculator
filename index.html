@@ -15,7 +15,8 @@
     <div class="top-banner"></div>
     <div class="main-wrapper-inner">
       <h1 class="main-message">Please enter a whole number (1 or higher):</h1>
-      <h1 id="display-result" class="display-result">HAH! I AM THE PRIME MINISTER!</h1>
+      <h1 id="display-message" class="display-message" style="background-color: #fff;">HAH! I AM THE PRIME MINISTER!
+      </h1>
       <div class="user-input">
         <input id="userInput" type="text" value="" onclick={resetWario()} />
         <div class="buttons">
@@ -23,26 +24,19 @@
           <button type="reset" onclick={resetArray()} class="submit-button">RESET ARRAY</button>
         </div>
       </div>
-      <img src="./img/shell.png" alt="" onclick={showArray()} class="show-array-button">
       <div id="speech" class="speech">
         <img src="./img/speech2.png" alt="" class="speech-img">
         <p class="speech-text">Click me to see all collected prime numbers</p>
       </div>
-      <div id="display-array" style="display: none;" class="display-array"></div>
-      <div id="display-message" class="display-message"></div>
+      <div class="array-wrapper">
+        <img src="./img/shell.png" alt="" onclick={showArray()} class="show-array-button">
+        <div id="prime-numbers-array" style="display: none;" class="prime-numbers-array"></div>
+      </div>
       <img src="./img/Wario-PNG-Transparent-Picture.png" alt="" id="wario-default" class="wario-default" />
       <img src="./img/Wario-PNG-Clipart.png" alt="" id="wario-success" class="wario-success" />
       <img src="./img/Wario_Angry.png" alt="" id="wario-fail" class="wario-fail" />
-
-
     </div>
-    <!-- <img src="./img/blob1.svg" alt="" class="blobs blob-1" />
-    <img src="./img/blob2.svg" alt="" class="blobs blob-2" />
-    <img src="./img/blob3.svg" alt="" class="blobs blob-3" />
-    <img src="./img/blob4.svg" alt="" class="blobs blob-4" />
-    <img src="./img/blob5.svg" alt="" class="blobs blob-5" /> -->
   </div>
-
   <script src="app.js" type="text/javascript"></script>
 </body>
 

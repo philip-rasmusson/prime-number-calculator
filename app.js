@@ -1,54 +1,50 @@
 'use strict'
-
-let array = []
-
+//Creates an empty array at the beginning of the script
+let PrimeNumbers = []
+const green = '#8AD385'
+const red = '#D8596F'
+const white = '#fff'
 
 function primeQuery() {
-  //Clears the text before a new search
-  // document.getElementById('display-result').innerHTML = ''
-  // document.getElementById('display-message').innerHTML = ''
-
   const input = document.getElementById("userInput").value
+  //Checks is input is a whole number
   if (!isNaN(input) && input > 0 && input % 1 === 0) {
+    //Checks if input is less than max safe int
     if (input < Number.MAX_SAFE_INTEGER) {
-
+      //Sets message and wario img based on if input is a Prime Number      
       if (checkIfPrime(parseInt(input))) {
-        document.getElementById('display-result').innerHTML = `Yay! ${input} is a prime number! Try another one!`
-        document.getElementById('wario-default').style.display = 'none'
-        document.getElementById('wario-success').style.display = 'block'
+        setMessage(`Yay! ${input} is a prime number! Try another one!`, green)
+        setWarioImg('wario-default', 'wario-success')
         addToArray(input)
       } else {
-        document.getElementById('display-result').innerHTML = `Sorry! ${input} is NOT a prime number...`
-        document.getElementById('wario-default').style.display = 'none'
-        document.getElementById('wario-fail').style.display = 'block'
+        setMessage(`Sorry! ${input} is NOT a prime number...`, red)
+        setWarioImg('wario-default', 'wario-fail')
       }
     } else {
-      document.getElementById('display-result').innerHTML = 'HAHA! Thats WAYYYY too high! Be more serious...'
-      document.getElementById('wario-default').style.display = 'none'
-      document.getElementById('wario-fail').style.display = 'block'
-
+      setMessage('HAHA! Thats WAYYYY too high! Be more serious...', red)
+      setWarioImg('wario-default', 'wario-fail')
     }
   }
   else {
-    document.getElementById('display-result').innerHTML = 'GAH! Wrong input! ONLY USE DIGITS! No more funny stuff, try again...'
-    document.getElementById('wario-default').style.display = 'none'
-    document.getElementById('wario-fail').style.display = 'block'
+    setMessage('GAH! Wrong input! ONLY USE DIGITS! No more funny stuff, try again...', red)
+    setWarioImg('wario-default', 'wario-fail')
   }
+  //Resets user input
   document.getElementById('userInput').value = ''
 
 }
-
+//Method to fins out if an int is a Prime Number
 const checkIfPrime = (n) => {
-  //An array containing all known prime numbers between 0-100
-  const primesBetween0and100 = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89]
+  //An array containing all known prime numbers between 0-10
+  const primesBetween0and10 = [2, 3, 5, 7]
   //An array containing all even numbers, and 5. If the input number ends with any of these,
   //it's not a prime number
   const evenEnding = [0, 2, 4, 5, 6, 8]
   //The last digit of input number
   const lastDigit = Number(n.toString().split('').reverse()[0])
 
-  //If input number is any of the known prime numbers between 0-100, returns true
-  if (primesBetween0and100.includes(n))
+  //If input number is any of the known prime numbers between 0-10, returns true
+  if (primesBetween0and10.includes(n))
     return true
   //Number 1 is not a prime number
   else if (n === 1)
@@ -63,44 +59,51 @@ const checkIfPrime = (n) => {
   //If all statements above are passed, it's a prime number
   else return true
 }
-
+//Adds prime number to array
 const addToArray = (primeNumber) => {
-  if (!array.includes(primeNumber))
-    array.push(primeNumber)
+  if (!PrimeNumbers.includes(primeNumber))
+    PrimeNumbers.push(primeNumber)
 }
+//Removes all inputs to the array
 const resetArray = () => {
   array = []
   resetWario()
 }
-
-
-
+//Sets which Wario img to show
+const setWarioImg = (noShow, show) => {
+  document.getElementById(`${noShow}`).style.display = 'none'
+  document.getElementById(`${show}`).style.display = 'block'
+}
+//Sets what message to show
+const setMessage = (message, bgcolor) => {
+  document.getElementById('display-message').innerHTML = message
+  document.getElementById('display-message').style.backgroundColor = bgcolor
+}
+//Toggles display of the array with all stored prime numbers
 const showArray = () => {
-  const sortedArray = array.sort((function (a, b) { return b - a })).map(item => {
+  const sortedArray = PrimeNumbers.sort((function (a, b) { return b - a })).map(item => {
     return `<p class="array-item">${item.toString()}</p>`
   })
-
-  document.getElementById('display-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
-  if (document.getElementById('display-array').style.display === 'none') {
-    document.getElementById('display-array').style.display = 'inline'
+  document.getElementById('prime-numbers-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
+  if (document.getElementById('prime-numbers-array').style.display === 'none') {
+    document.getElementById('prime-numbers-array').style.display = 'inline'
     document.getElementById('speech').style.display = 'none'
-
   }
   else {
-    document.getElementById('display-array').style.display = 'none'
+    document.getElementById('prime-numbers-array').style.display = 'none'
     document.getElementById('speech').style.display = 'grid'
 
   }
 }
-
+//Resets the Wario-img to default
 const resetWario = () => {
   document.getElementById('speech').style.display = 'grid'
 
   document.getElementById('wario-default').style.display = 'block'
   document.getElementById('wario-success').style.display = 'none'
   document.getElementById('wario-fail').style.display = 'none'
-  document.getElementById('display-array').style.display = 'none'
-  document.getElementById('display-result').innerHTML = 'HAH! I AM THE PRIME MINISTER!'
+  document.getElementById('prime-numbers-array').style.display = 'none'
+  setMessage('HAH! I AM THE PRIME MINISTER!', white)
 }
 
 module.exports = checkIfPrime
