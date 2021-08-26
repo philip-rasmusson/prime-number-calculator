@@ -80,8 +80,6 @@ const showArray = () => {
     return `<p class="array-item">${item.toString()}</p>`
   })
 
-  console.log(sortedArray.join(',').replace(/,/g, ' '))
-
   document.getElementById('display-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
   if (document.getElementById('display-array').style.display === 'none') {
     document.getElementById('display-array').style.display = 'inline'
