@@ -234,7 +234,8 @@
     grid-column: 1/-1;
     margin: auto 1rem;
     justify-self: center;
-    grid-row: 5/8;
+    align-self: center;
+    grid-row: 1/-1;
     font-size: 5vw;
   }
   .show-array-button {
