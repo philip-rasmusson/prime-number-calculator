@@ -66,7 +66,7 @@ const addToArray = (primeNumber) => {
 }
 //Removes all inputs to the array
 const resetArray = () => {
-  array = []
+  PrimeNumbers = []
   resetWario()
 }
 //Sets which Wario img to show
