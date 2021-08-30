@@ -36,22 +36,60 @@ function primeQuery() {
 
 //Method to fins out if an int is a Prime Number
 const checkIfPrime = (n) => {
-  //An array containing all known prime numbers between 0-10
-  const primesBetween0and10 = [2, 3, 5, 7]
-  //An array containing all even numbers, and 5. If the input number ends with any of these,
-  //it's not a prime number
-  const evenEnding = [0, 2, 4, 5, 6, 8]
-  //The last digit of input number
-  const lastDigit = Number(n.toString().split('').reverse()[0])
+  let primeNumber = true
+  for (let i = 2; i <= n / 2; i++)
+    if (n % i === 0) primeNumber = false
 
-  //If input number is any of the known prime numbers between 0-10, returns true
-  if (primesBetween0and10.includes(n))
-    return true
-  //If input is not a prime number, returns false
-  else if (evenEnding.includes(lastDigit) || n === 1 || (n.toString().split('').reduce((x, y) => Number(x) + Number(y)) % 3 === 0))
-    return false
-  //If all statements above are passed, it's a prime number
-  else return true
+  if (n === 1) return false
+  else
+    return primeNumber
+}
+// //Method to fins out if an int is a Prime Number
+// const checkIfPrime = (n) => {
+//   //An array containing all known prime numbers between 0-10
+//   const primesBetween0and10 = [2, 3, 5, 7]
+//   //An array containing all even numbers, and 5. If the input number ends with any of these,
+//   //it's not a prime number
+//   const evenEnding = [0, 2, 4, 5, 6, 8]
+//   //The last digit of input number
+//   const lastDigit = Number(n.toString().split('').reverse()[0])
+
+//   //If input number is any of the known prime numbers between 0-10, returns true
+//   if (primesBetween0and10.includes(n))
+//     return true
+//   //If input is not a prime number, returns false
+//   else if (evenEnding.includes(lastDigit) || n === 1 || (n.toString().split('').reduce((x, y) => Number(x) + Number(y)) % 3 === 0))
+//     return false
+//   //If all statements above are passed, it's a prime number
+//   else return true
+// }
+
+const showNextPrime = () => {
+  const highestPrimeNumber = primeNumbers.sort((function (a, b) { return b - a }))[0]
+  if (highestPrimeNumber != undefined) {
+
+    const nextPrime = findNextPrime(highestPrimeNumber)
+    document.getElementById('show-next-prime').innerHTML = `<p>The next prime number is ${nextPrime}</p>`
+
+    if (document.getElementById('show-next-prime').style.display === 'none') {
+      document.getElementById('show-next-prime').style.display = 'inline'
+    }
+    else {
+      document.getElementById('show-next-prime').style.display = 'none'
+    }
+  }
+}
+
+const findNextPrime = (highestPrimeNumber) => {
+  let loop = true
+  while (loop) {
+    let count = 1
+    highestPrimeNumber += count
+    if (checkIfPrime(highestPrimeNumber))
+      loop = false
+    else count++
+  }
+  return highestPrimeNumber
 }
 
 //Adds prime number to array
