@@ -5,7 +5,7 @@ let primeNumbers = []
 const green = '#8AD385'
 const red = '#D8596F'
 const white = '#fff'
-//
+
 const evenEnding = [0, 2, 4, 5, 6, 8]
 
 const primeQuery = () => {
@@ -75,10 +75,17 @@ const showNextPrime = () => {
 function findNextPrime(highestPrimeNumber) {
   let loop = true
   let nextPrime = Number(highestPrimeNumber)
+  const lastDigit = Number(nextPrime.toString().split('').reverse()[0])
+  //If highestPrimeNumber is 2, the next will be 3
+  if (nextPrime === 2) {
+    nextPrime = 3
+    loop = false
+  }
+  //If highestPrimeNumber is more than 2, 
   while (loop) {
-    let count = 1
+    let count = 2
     nextPrime += count
-    checkIfPrime(nextPrime) ? loop = false : count++
+    checkIfPrime(nextPrime) ? loop = false : count += 2
   }
   return nextPrime
 }

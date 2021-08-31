@@ -1,6 +1,7 @@
 
 const { expect } = require('@jest/globals')
 const checkIfPrime = require('./app')
+// const findNextPrime = require('./app')
 
 test('returns false if input ends with 0, 2, 4, 5, 6 or 8', () => {
   expect(checkIfPrime(244)).toEqual(false)
@@ -67,3 +68,9 @@ test('returns true when input known prime numbers over 1000', () => {
   expect(checkIfPrime(1010747045)).toEqual(false)
 })
 
+
+// test('returns next prime number', () => {
+//   expect(findNextPrime(2)).toBe(3)
+//   expect(findNextPrime(12653)).toBe(12659)
+//   expect(findNextPrime(13751)).toBe(13757)
+// })
