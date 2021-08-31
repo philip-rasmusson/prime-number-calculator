@@ -1,24 +1,26 @@
 'use strict'
-//Creates an empty array at the beginning of the script
+//Main array to store prime numbers
 let primeNumbers = []
 //Background colors for display-message
 const green = '#8AD385'
 const red = '#D8596F'
 const white = '#fff'
+//
 const evenEnding = [0, 2, 4, 5, 6, 8]
 
-function primeQuery() {
+const primeQuery = () => {
   const input = document.getElementById("userInput").value
   const lastDigit = Number(input.toString().split('').reverse()[0])
-  //Checks is input is a whole number
+  //Checks if input is a whole number
   if (!isNaN(input) && input > 0 && input % 1 === 0) {
     //Checks if input is less than max safe int
     if (input < Number.MAX_SAFE_INTEGER) {
+      //If input is > 9 and ends with 0, 2, 4, 5, 6 or 8
+      //it's not a prime number
       if ((input > 9 && evenEnding.includes(lastDigit))) {
         setMessage(`Sorry! ${input} is NOT a prime number...`, red)
         setWarioImg('wario-default', 'wario-success', 'wario-fail')
       } else {
-        //Sets message and wario img based on if input is a Prime Number      
         if (checkIfPrime(parseInt(input))) {
           setMessage(`Yay! ${input} is a prime number! Try another one!`, green)
           setWarioImg('wario-default', 'wario-fail', 'wario-success')
@@ -41,7 +43,7 @@ function primeQuery() {
   document.getElementById('userInput').value = ''
 }
 
-//Method to fins out if an int is a Prime Number
+//Function to find out if an int is a Prime Number
 function checkIfPrime(n) {
   let primeNumber = true
   //Checks if n is dividable any anything else than n
@@ -55,17 +57,17 @@ function checkIfPrime(n) {
 
 //Toggles display of the next prime number
 const showNextPrime = () => {
+  //Assigns highest number in the array to a var
   const highestPrimeNumber = primeNumbers.sort((function (a, b) { return b - a }))[0]
   if (highestPrimeNumber != undefined) {
-
     const nextPrime = findNextPrime(highestPrimeNumber)
-    document.getElementById('show-next-prime').innerHTML = `<p>The next prime number is ${nextPrime}</p>`
-
-    if (document.getElementById('show-next-prime').style.display === 'none') {
-      document.getElementById('show-next-prime').style.display = 'inline'
+    const showNextPrime = document.getElementById('show-next-prime')
+    showNextPrime.innerHTML = `<p>The next prime number is ${nextPrime}</p>`
+    if (showNextPrime.style.display === 'none') {
+      showNextPrime.style.display = 'inline'
     }
     else {
-      document.getElementById('show-next-prime').style.display = 'none'
+      showNextPrime.style.display = 'none'
     }
   }
 }
@@ -76,9 +78,7 @@ function findNextPrime(highestPrimeNumber) {
   while (loop) {
     let count = 1
     nextPrime += count
-    if (checkIfPrime(nextPrime))
-      loop = false
-    else count++
+    checkIfPrime(nextPrime) ? loop = false : count++
   }
   return nextPrime
 }
@@ -96,9 +96,9 @@ const resetArray = () => {
 }
 
 //Sets which Wario img to show
-const setWarioImg = (noShow1, noShow2, show) => {
-  document.getElementById(`${noShow1}`).style.display = 'none'
-  document.getElementById(`${noShow2}`).style.display = 'none'
+const setWarioImg = (hidden, hidden2, show) => {
+  document.getElementById(`${hidden}`).style.display = 'none'
+  document.getElementById(`${hidden2}`).style.display = 'none'
   document.getElementById(`${show}`).style.display = 'block'
 }
 
@@ -116,22 +116,20 @@ const showArray = () => {
   document.getElementById('prime-numbers-array').innerHTML = sortedArray.join(',').replace(/,/g, ' ')
   if (document.getElementById('prime-numbers-array').style.display === 'none') {
     document.getElementById('prime-numbers-array').style.display = 'inline'
-    document.getElementById('speech').style.display = 'none'
   }
   else {
     document.getElementById('prime-numbers-array').style.display = 'none'
-    document.getElementById('speech').style.display = 'grid'
   }
 }
 
-//Resets the Wario-img to default
+//Resets the display of WArio, array and next prime
 const resetWario = () => {
-  document.getElementById('speech').style.display = 'grid'
   setWarioImg('wario-fail', 'wario-success', 'wario-default')
   document.getElementById('prime-numbers-array').style.display = 'none'
+  document.getElementById('show-next-prime').style.display = 'none'
   setMessage('HAH! I AM THE PRIME MINISTER!', white)
 }
 
-module.exports = findNextPrime
+module.exports = checkIfPrime
 
 
