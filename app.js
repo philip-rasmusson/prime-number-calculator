@@ -5,21 +5,28 @@ let primeNumbers = []
 const green = '#8AD385'
 const red = '#D8596F'
 const white = '#fff'
+const evenEnding = [0, 2, 4, 5, 6, 8]
 
 function primeQuery() {
   const input = document.getElementById("userInput").value
+  const lastDigit = Number(input.toString().split('').reverse()[0])
   //Checks is input is a whole number
   if (!isNaN(input) && input > 0 && input % 1 === 0) {
     //Checks if input is less than max safe int
     if (input < Number.MAX_SAFE_INTEGER) {
-      //Sets message and wario img based on if input is a Prime Number      
-      if (checkIfPrime(parseInt(input))) {
-        setMessage(`Yay! ${input} is a prime number! Try another one!`, green)
-        setWarioImg('wario-default', 'wario-fail', 'wario-success')
-        addToArray(input)
-      } else {
+      if ((input > 9 && evenEnding.includes(lastDigit))) {
         setMessage(`Sorry! ${input} is NOT a prime number...`, red)
         setWarioImg('wario-default', 'wario-success', 'wario-fail')
+      } else {
+        //Sets message and wario img based on if input is a Prime Number      
+        if (checkIfPrime(parseInt(input))) {
+          setMessage(`Yay! ${input} is a prime number! Try another one!`, green)
+          setWarioImg('wario-default', 'wario-fail', 'wario-success')
+          addToArray(input)
+        } else {
+          setMessage(`Sorry! ${input} is NOT a prime number...`, red)
+          setWarioImg('wario-default', 'wario-success', 'wario-fail')
+        }
       }
     } else {
       setMessage('HAHA! Thats WAYYYY too high! Be more serious...', red)
@@ -35,17 +42,18 @@ function primeQuery() {
 }
 
 //Method to fins out if an int is a Prime Number
-const checkIfPrime = (n) => {
+function checkIfPrime(n) {
   let primeNumber = true
+  //Checks if n is dividable any anything else than n
   for (let i = 2; i <= n / 2; i++)
     if (n % i === 0) primeNumber = false
-
+  //1 is not a prime
   if (n === 1) return false
   else
     return primeNumber
 }
 
-
+//Toggles display of the next prime number
 const showNextPrime = () => {
   const highestPrimeNumber = primeNumbers.sort((function (a, b) { return b - a }))[0]
   if (highestPrimeNumber != undefined) {
@@ -61,8 +69,8 @@ const showNextPrime = () => {
     }
   }
 }
-
-const findNextPrime = (highestPrimeNumber) => {
+//Finds the next prime number
+function findNextPrime(highestPrimeNumber) {
   let loop = true
   let nextPrime = Number(highestPrimeNumber)
   while (loop) {
@@ -124,6 +132,6 @@ const resetWario = () => {
   setMessage('HAH! I AM THE PRIME MINISTER!', white)
 }
 
-module.exports = checkIfPrime
+module.exports = findNextPrime
 
 
