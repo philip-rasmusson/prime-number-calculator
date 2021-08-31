@@ -61,6 +61,7 @@ const showNextPrime = () => {
   const highestPrimeNumber = primeNumbers.sort((function (a, b) { return b - a }))[0]
   if (highestPrimeNumber != undefined) {
     const nextPrime = findNextPrime(highestPrimeNumber)
+    addToArray(nextPrime)
     const showNextPrime = document.getElementById('show-next-prime')
     showNextPrime.innerHTML = `<p>The next prime number is ${nextPrime}</p>`
     if (showNextPrime.style.display === 'none') {
